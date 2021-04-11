@@ -1,5 +1,17 @@
+import Layout from 'components/Layout'
+import NavBar from 'components/NavBar'
+import LoginForm from 'components/LoginForm'
+import { SectionStyled } from './styles'
+
 const Login = () => {
-  return <h1>Login Page</h1>
+  return (
+    <Layout>
+      <NavBar />
+      <SectionStyled>
+        <LoginForm />
+      </SectionStyled>
+    </Layout>
+  )
 }
 
 export default Login

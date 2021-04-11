@@ -21,5 +21,6 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'react/react-in-jsx-scope': RULES.OFF,
+    'no-prototype-builtins': RULES.OFF,
   },
 }

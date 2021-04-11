@@ -1,19 +1,38 @@
 import { lazy, Suspense } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
+import InitialPreload from 'components/InitialPreload'
 import PrivateRoute from './privateRoute'
 
 const LoginPage = lazy(() => import('pages/Login'))
+const RegisterPage = lazy(() => import('pages/Register'))
 const UsersPage = lazy(() => import('pages/Users'))
 const DetailsPage = lazy(() => import('pages/Details'))
 
-const Routes = () => (
-  <Suspense fallback={<span>Loading...</span>}>
+const Routes = ({ isAuth }) => (
+  <Suspense fallback={<InitialPreload />}>
     <Switch>
       <Route exact path="/" component={LoginPage} />
-      <PrivateRoute exact path="/users" component={UsersPage} />
-      <PrivateRoute exact path="/details/:id" component={DetailsPage} />
+      <Route exact path="/register" component={RegisterPage} />
+      <PrivateRoute exact isAuth={isAuth} path="/users" component={UsersPage} />
+      <PrivateRoute
+        exact
+        isAuth={isAuth}
+        path="/users/detail/:id"
+        component={DetailsPage}
+      />
     </Switch>
   </Suspense>
 )
 
-export default Routes
+Routes.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
+}
+
+const mapStateToProps = (state) => ({
+  isAuth: state.session.isAuth,
+})
+
+const RoutesConnected = connect(mapStateToProps, null)(Routes)
+export default RoutesConnected

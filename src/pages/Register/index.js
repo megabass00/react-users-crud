@@ -1,16 +1,17 @@
 import Layout from 'components/Layout'
 import NavBar from 'components/NavBar'
+import RegisterForm from 'components/RegisterForm'
 import { SectionStyled } from './styles'
 
-const Users = () => {
+const Register = () => {
   return (
     <Layout>
       <NavBar />
       <SectionStyled>
-        <h1>Users Page</h1>
+        <RegisterForm />
       </SectionStyled>
     </Layout>
   )
 }
 
-export default Users
+export default Register

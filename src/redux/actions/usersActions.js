@@ -17,7 +17,7 @@ import {
   fetchUser,
   updateUser as updateUserAction,
   deleteUser as deleteUserAction,
-} from 'redux/actions/usersActions'
+} from 'redux/services/usersService'
 
 const usersFetchList = () => ({
   type: USERS_FETCH_LIST,
@@ -75,30 +75,58 @@ const usersDeleteUserError = (error) => ({
   payload: error,
 })
 
-export const getUsersList = (page) => (dispatch, getState) => {
-  dispatch(usersFetchList())
-  fetchUsersList(page)
-    .then((users) => dispatch(usersFetchListSuccess(users)))
-    .catch((error) => dispatch(usersFetchListError(error)))
-}
+export const getUsersList = (page) => (dispatch, getState) =>
+  new Promise((resolve, reject) => {
+    dispatch(usersFetchList())
+    fetchUsersList(page)
+      .then((users) => {
+        dispatch(usersFetchListSuccess(users))
+        resolve(users)
+      })
+      .catch((error) => {
+        dispatch(usersFetchListError(error))
+        reject(error)
+      })
+  })
 
-export const getUser = (id) => (dispatch, getState) => {
-  dispatch(usersFetchUser())
-  fetchUser(id)
-    .then((user) => dispatch(usersFetchUserSuccess(user)))
-    .catch((error) => dispatch(usersFetchUserError(error)))
-}
+export const getUser = (id) => (dispatch, getState) =>
+  new Promise((resolve, reject) => {
+    dispatch(usersFetchUser())
+    fetchUser(id)
+      .then((user) => {
+        dispatch(usersFetchUserSuccess(user))
+        resolve(user)
+      })
+      .catch((error) => {
+        dispatch(usersFetchUserError(error))
+        reject(error)
+      })
+  })
 
-export const updateUser = (id, user) => (dispatch, getState) => {
-  dispatch(usersUpdateUser())
-  updateUserAction(id, user)
-    .then((user) => dispatch(usersUpdateUserSuccess(user)))
-    .catch((error) => dispatch(usersUpdateUserError(error)))
-}
+export const updateUser = (id, user) => (dispatch, getState) =>
+  new Promise((resolve, reject) => {
+    dispatch(usersUpdateUser())
+    updateUserAction(id, user)
+      .then((user) => {
+        dispatch(usersUpdateUserSuccess(user))
+        resolve(user)
+      })
+      .catch((error) => {
+        dispatch(usersUpdateUserError(error))
+        reject(error)
+      })
+  })
 
-export const deleteUser = (id) => (dispatch, getState) => {
-  dispatch(usersDeleteUser())
-  deleteUserAction(id)
-    .then((user) => dispatch(usersDeleteUserSuccess(user)))
-    .catch((error) => dispatch(usersDeleteUserError(error)))
-}
+export const deleteUser = (id) => (dispatch, getState) =>
+  new Promise((resolve, reject) => {
+    dispatch(usersDeleteUser())
+    deleteUserAction(id)
+      .then((user) => {
+        dispatch(usersDeleteUserSuccess(user))
+        resolve(user)
+      })
+      .catch((error) => {
+        dispatch(usersDeleteUserError(error))
+        reject(error)
+      })
+  })
