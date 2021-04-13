@@ -15,6 +15,7 @@ import {
 
 const INITIAL_STATE = {
   list: [],
+  currentUser: null,
   loading: false,
   error: null,
   currentPage: 1,
@@ -54,16 +55,21 @@ const usersReducer = (state = INITIAL_STATE, action) => {
     case USERS_FETCH_USER:
       return {
         ...state,
+        loading: true,
       }
 
     case USERS_FETCH_USER_SUCCESS:
       return {
         ...state,
+        loading: false,
+        currentUser: payload,
       }
 
     case USERS_FETCH_USER_ERROR:
       return {
         ...state,
+        loading: false,
+        error: payload,
       }
 
     case USERS_UPDATE_USER:

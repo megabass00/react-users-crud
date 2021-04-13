@@ -8,7 +8,7 @@ import PrivateRoute from './privateRoute'
 const LoginPage = lazy(() => import('pages/Login'))
 const RegisterPage = lazy(() => import('pages/Register'))
 const UsersPage = lazy(() => import('pages/Users'))
-const DetailsPage = lazy(() => import('pages/Details'))
+const DetailPage = lazy(() => import('pages/Detail'))
 
 const Routes = ({ isAuth }) => (
   <Suspense fallback={<InitialPreload />}>
@@ -19,8 +19,8 @@ const Routes = ({ isAuth }) => (
       <PrivateRoute
         exact
         isAuth={isAuth}
-        path="/users/detail/:id"
-        component={DetailsPage}
+        path="/users/detail/:userId"
+        component={DetailPage}
       />
     </Switch>
   </Suspense>

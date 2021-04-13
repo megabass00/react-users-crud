@@ -1,24 +1,8 @@
 import { memo } from 'react'
 import PropTypes from 'prop-types'
-import { FormGroup, LabelStyled, InputStyled, SmallStyled } from './styles'
 
-const PrintError = ({ error, defaultMessage }) =>
-  error.message ? (
-    <SmallStyled>{error.message}</SmallStyled>
-  ) : (
-    <SmallStyled>{defaultMessage}</SmallStyled>
-  )
-
-PrintError.propTypes = {
-  defaultMessage: PropTypes.string,
-  error: PropTypes.shape({
-    message: PropTypes.string,
-  }).isRequired,
-}
-
-PrintError.defaultProps = {
-  defaultMessage: '',
-}
+import FormValidationError from 'components/FormValidationError'
+import { FormGroup, LabelStyled, InputStyled } from './styles'
 
 const FormInput = ({
   label,
@@ -38,27 +22,7 @@ const FormInput = ({
       placeholder={placeholder}
       autoFocus={autoFocus}
     />
-    {error && error.type === 'required' && (
-      <PrintError error={error} defaultMessage={`${name} is required`} />
-    )}
-    {error && error.type === 'minLength' && (
-      <PrintError
-        error={error}
-        defaultMessage={`${name} does not have the minimum length`}
-      />
-    )}
-    {error && error.type === 'pattern' && (
-      <PrintError
-        error={error}
-        defaultMessage={`${name} does not have a valid format`}
-      />
-    )}
-    {error && error.type === 'validate' && (
-      <PrintError
-        error={error}
-        defaultMessage={`${name} has not passed the validation`}
-      />
-    )}
+    <FormValidationError name={name} error={error} />
   </FormGroup>
 )
 

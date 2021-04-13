@@ -14,9 +14,9 @@ export const AvatarStyled = styled.img`
       case 'sm':
         return 'height: 40px;'
       case 'md':
-        return 'height: 70px;'
-      case 'lg':
         return 'height: 100px;'
+      case 'lg':
+        return 'height: 150px;'
       default:
         return 'height: 40px;'
     }

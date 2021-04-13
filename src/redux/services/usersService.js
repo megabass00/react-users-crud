@@ -8,13 +8,13 @@ export const fetchUserService = (id) =>
     res.json()
   )
 
-export const updateUserService = (id, { name, job }) =>
+export const updateUserService = (id, updateValues) =>
   fetch(`${process.env.REACT_APP_API_BASEURL}/users/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ name, job }),
+    body: JSON.stringify(updateValues),
   }).then((res) => res.json())
 
 export const deleteUserService = (id) =>
@@ -23,4 +23,4 @@ export const deleteUserService = (id) =>
     headers: {
       'Content-Type': 'application/json',
     },
-  }).then((res) => res.json())
+  }).then(() => ({ success: true }))

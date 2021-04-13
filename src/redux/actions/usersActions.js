@@ -93,9 +93,9 @@ export const getUser = (id) => (dispatch) =>
   new Promise((resolve, reject) => {
     dispatch(usersFetchUser())
     fetchUserService(id)
-      .then((user) => {
-        dispatch(usersFetchUserSuccess(user))
-        resolve(user)
+      .then((result) => {
+        dispatch(usersFetchUserSuccess(result.data))
+        resolve(result.data)
       })
       .catch((error) => {
         dispatch(usersFetchUserError(error))
@@ -108,8 +108,8 @@ export const updateUser = (id, user) => (dispatch) =>
     dispatch(usersUpdateUser())
     updateUserService(id, user)
       .then((user) => {
-        dispatch(usersUpdateUserSuccess(user))
-        resolve(user)
+        dispatch(usersUpdateUserSuccess(user.updatedAt))
+        resolve(user.updatedAt)
       })
       .catch((error) => {
         dispatch(usersUpdateUserError(error))
@@ -121,9 +121,9 @@ export const deleteUser = (id) => (dispatch) =>
   new Promise((resolve, reject) => {
     dispatch(usersDeleteUser())
     deleteUserService(id)
-      .then((user) => {
-        dispatch(usersDeleteUserSuccess(user))
-        resolve(user)
+      .then(() => {
+        dispatch(usersDeleteUserSuccess())
+        resolve()
       })
       .catch((error) => {
         dispatch(usersDeleteUserError(error))

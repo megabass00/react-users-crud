@@ -23,9 +23,7 @@ const LoginForm = ({ userLogin, isSubmitting, loginError, clearError }) => {
 
   const onSubmit = ({ email, password }) => {
     userLogin({ email, password })
-      .then(() => {
-        history.push('/users')
-      })
+      .then(() => history.push('/users'))
       .catch((err) => console.log(err))
   }
 
@@ -46,7 +44,7 @@ const LoginForm = ({ userLogin, isSubmitting, loginError, clearError }) => {
               value: /[a-z0-9]+@[a-z0-9]+\.[a-z0-9]{2,3}/,
             },
           }}
-          error={emailError || {}}
+          error={emailError}
         />
         <FormInput
           name="password"
@@ -55,7 +53,7 @@ const LoginForm = ({ userLogin, isSubmitting, loginError, clearError }) => {
           placeholder="Enter your password..."
           register={register}
           validation={{ required: true, minLength: 8 }}
-          error={passwordError || {}}
+          error={passwordError}
         />
         <ButtonStyled stretch>Login</ButtonStyled>
       </form>

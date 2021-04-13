@@ -1,19 +1,24 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { useHistory } from 'react-router-dom'
 
+import { getUsersList } from 'redux/actions/usersActions'
 import Pagination from 'components/Pagination'
 import SkeletonPreloader from './SketonPreloader'
 import ListItem from './ListItem'
-import { getUsersList } from 'redux/actions/usersActions'
 import { ListWrapper } from './styles'
 
 const UsersList = ({ getUsersList, list, loading, currentPage }) => {
+  const history = useHistory()
+
   useEffect(() => {
     getUsersList(currentPage).then((result) => {
       console.log('*** res', result)
     })
   }, [getUsersList, currentPage])
+
+  const handleClick = (id) => history.push(`/users/detail/${id}`)
 
   return (
     <ListWrapper>
@@ -22,9 +27,11 @@ const UsersList = ({ getUsersList, list, loading, currentPage }) => {
         list.map((user) => (
           <ListItem
             key={user.id}
+            id={user.id}
             avatar={user.avatar}
             email={user.email}
             fullName={`${user.first_name} ${user.last_name}`}
+            onClick={handleClick}
           />
         ))}
       <Pagination />

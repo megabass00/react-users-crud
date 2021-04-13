@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import Button from 'components/Button'
+import NavButton from 'components/NavButton'
 
 export const NavStyled = styled.nav`
   display: flex;
@@ -10,8 +11,11 @@ export const NavStyled = styled.nav`
   height: 80px;
   position: fixed;
   top: 0;
-  background: white;
+  background: #ffffffdd;
   padding: 10px 0;
+  z-index: 1;
+  padding: 10px 0;
+  backdrop-effect: blur(5px);
 `
 
 export const NavGroup = styled.div`
@@ -45,4 +49,8 @@ export const LinkStyled = styled(Link)`
 
 export const Logout = styled(Button)`
   margin-left: 20px;
+`
+
+export const NavButtonStyled = styled(NavButton)`
+  margin-right: 20px;
 `

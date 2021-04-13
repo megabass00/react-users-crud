@@ -55,7 +55,7 @@ const RegisterForm = ({
               value: /[a-z0-9]+@[a-z0-9]+\.[a-z0-9]{2,3}/,
             },
           }}
-          error={emailError || {}}
+          error={emailError}
         />
         <FormInput
           name="password"
@@ -64,7 +64,7 @@ const RegisterForm = ({
           placeholder="Enter your password..."
           register={register}
           validation={{ required: true, minLength: 8 }}
-          error={passwordError || {}}
+          error={passwordError}
         />
         <FormInput
           name="confirmPassword"
@@ -78,7 +78,7 @@ const RegisterForm = ({
             validate: (value) =>
               value === password.current || 'The passwords do not match',
           }}
-          error={confirmPasswordError || {}}
+          error={confirmPasswordError}
         />
         <ButtonStyled disabled={Boolean(isSubmitting)} stretch>
           Register Now

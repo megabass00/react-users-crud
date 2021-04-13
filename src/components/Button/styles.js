@@ -19,6 +19,10 @@ export const ButtonStyled = styled.button`
     background: #fff;
   }
 
+  :focus {
+    outline: 0;
+  }
+
   :disabled {
     opacity: 0.3;
     pointer-events: none;

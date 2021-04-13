@@ -1,40 +1,51 @@
 import { memo } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { useHistory } from 'react-router-dom'
 
 import { logout } from 'redux/actions/sessionActions'
 import SvgLaLiga from 'components/svg/SvgLaLiga'
-import { NavStyled, NavGroup, Logo, Title, LinkStyled, Logout } from './styles'
+import {
+  NavStyled,
+  NavGroup,
+  Logo,
+  Title,
+  LinkStyled,
+  Logout,
+  NavButtonStyled,
+} from './styles'
 
-const NavBar = ({ isAuth, logout }) => {
+const NavBar = ({ isAuth, logout, canGoBack }) => {
+  const history = useHistory()
+
+  const handleBackClick = () => history.goBack()
+
   return (
     <NavStyled>
       <Logo>
         <SvgLaLiga width={50} />
       </Logo>
-      {isAuth ? (
-        <>
-          <NavGroup>
-            <Title>React Users CRUD</Title>
-          </NavGroup>
+      <>
+        <NavGroup>
+          {canGoBack && (
+            <NavButtonStyled direction="left" onCLick={handleBackClick} />
+          )}
+          <Title>React Users CRUD</Title>
+        </NavGroup>
+        {isAuth ? (
           <NavGroup>
             <span>Welcome 😎</span>
             <Logout onClick={logout}>Log Out</Logout>
           </NavGroup>
-        </>
-      ) : (
-        <>
-          <NavGroup>
-            <Title>React Users CRUD</Title>
-          </NavGroup>
+        ) : (
           <NavGroup>
             <div>
               <LinkStyled to={{ pathname: '/' }}>Login</LinkStyled>
               <LinkStyled to={{ pathname: '/register' }}>Register</LinkStyled>
             </div>
           </NavGroup>
-        </>
-      )}
+        )}
+      </>
     </NavStyled>
   )
 }
@@ -42,6 +53,11 @@ const NavBar = ({ isAuth, logout }) => {
 NavBar.propTypes = {
   isAuth: PropTypes.bool.isRequired,
   logout: PropTypes.func.isRequired,
+  canGoBack: PropTypes.bool,
+}
+
+NavBar.defaultProps = {
+  canGoBack: false,
 }
 
 const mapStateToProps = (state) => ({
