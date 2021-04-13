@@ -2,6 +2,7 @@ import {
   SESSION_CHECKING_LOGIN,
   SESSION_LOGIN_SUCCESS,
   SESSION_LOGIN_ERROR,
+  SESSION_LOGOUT,
   SESSION_REGISTER,
   SESSION_REGISTER_SUCCESS,
   SESSION_REGISTER_ERROR,
@@ -23,6 +24,10 @@ const sessionLoginSuccess = (user) => ({
 const sessionLoginError = (error) => ({
   type: SESSION_LOGIN_ERROR,
   payload: error,
+})
+
+const sessionLogOut = () => ({
+  type: SESSION_LOGOUT,
 })
 
 const sessionRegister = (user) => ({
@@ -61,6 +66,11 @@ export const userLogin = (user) => (dispatch) =>
         reject(error)
       })
   })
+
+export const logout = () => (dispatch) => {
+  dispatch(sessionLogOut())
+  window.sessionStorage.removeItem(sessionStorageTokenKey)
+}
 
 export const userRegister = (user) => (dispatch) =>
   new Promise((resolve, reject) => {

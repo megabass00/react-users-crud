@@ -2,9 +2,11 @@ import {
   SESSION_CHECKING_LOGIN,
   SESSION_LOGIN_SUCCESS,
   SESSION_LOGIN_ERROR,
+  SESSION_LOGOUT,
   SESSION_REGISTER,
   SESSION_REGISTER_SUCCESS,
   SESSION_REGISTER_ERROR,
+  SESSION_CLEAR_ERROR,
 } from 'redux/types/sessionTypes'
 
 export const sessionStorageTokenKey = 'token'
@@ -14,8 +16,8 @@ const INITIAL_STATE = {
   loading: false,
   isAuth: Boolean(oldToken) || false,
   token: oldToken,
-  error: '',
-  loggedUser: {},
+  error: null,
+  loggedUser: null,
 }
 
 const sessionReducer = (state = INITIAL_STATE, action) => {
@@ -43,6 +45,13 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
         error: payload,
       }
 
+    case SESSION_LOGOUT:
+      return {
+        ...state,
+        isAuth: false,
+        token: null,
+      }
+
     case SESSION_REGISTER:
       return {
         ...state,
@@ -63,6 +72,12 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         error: payload,
+      }
+
+    case SESSION_CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
       }
 
     default:

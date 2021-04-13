@@ -5,7 +5,7 @@ export const ButtonStyled = styled.button`
   text-align: center;
   font-family: Rajdhani;
   font-size: 1rem;
-  padding: 15px 10px;
+  padding: 10px;
   background: #0077c8;
   border: none;
   color: #fff;

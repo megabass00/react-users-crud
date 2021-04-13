@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import Button from 'components/Button'
 
 export const NavStyled = styled.nav`
   display: flex;
@@ -40,4 +41,8 @@ export const LinkStyled = styled(Link)`
   :hover {
     color: #76bff0;
   }
+`
+
+export const Logout = styled(Button)`
+  margin-left: 20px;
 `

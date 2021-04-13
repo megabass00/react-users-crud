@@ -16,23 +16,39 @@ import {
 const INITIAL_STATE = {
   list: [],
   loading: false,
+  error: null,
+  currentPage: 1,
+  totalResults: 0,
+  totalPages: 0,
 }
 
 const usersReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
+  const { type, payload } = action
+  switch (type) {
     case USERS_FETCH_LIST:
       return {
         ...state,
+        loading: true,
       }
 
     case USERS_FETCH_LIST_SUCCESS:
       return {
         ...state,
+        loading: false,
+        list: payload.data,
+        currentPage: payload.page,
+        totalResults: payload.total,
+        totalPages: payload.total_pages,
       }
 
     case USERS_FETCH_LIST_ERROR:
       return {
         ...state,
+        loading: false,
+        error: payload,
+        currentPage: 1,
+        totalResults: 0,
+        totalPages: 0,
       }
 
     case USERS_FETCH_USER:

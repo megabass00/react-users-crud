@@ -1,12 +1,12 @@
 import { memo } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import SvgLaLiga from 'components/svg/SvgLaLiga'
-import Button from 'components/Button'
-import Avatar from 'components/Avatar'
-import { NavStyled, NavGroup, Logo, Title, LinkStyled } from './styles'
 
-const NavBar = ({ isAuth }) => {
+import { logout } from 'redux/actions/sessionActions'
+import SvgLaLiga from 'components/svg/SvgLaLiga'
+import { NavStyled, NavGroup, Logo, Title, LinkStyled, Logout } from './styles'
+
+const NavBar = ({ isAuth, logout }) => {
   return (
     <NavStyled>
       <Logo>
@@ -18,12 +18,8 @@ const NavBar = ({ isAuth }) => {
             <Title>React Users CRUD</Title>
           </NavGroup>
           <NavGroup>
-            <span>Hi USERNAME</span>
-            <Avatar
-              src="https://reqres.in/img/faces/2-image.jpg"
-              alt="Avatar"
-            />
-            <Button>Log Out</Button>
+            <span>Welcome 😎</span>
+            <Logout onClick={logout}>Log Out</Logout>
           </NavGroup>
         </>
       ) : (
@@ -45,11 +41,16 @@ const NavBar = ({ isAuth }) => {
 
 NavBar.propTypes = {
   isAuth: PropTypes.bool.isRequired,
+  logout: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   isAuth: state.session.isAuth,
 })
 
-const NavBarConnected = connect(mapStateToProps, null)(NavBar)
+const mapDispatchToProps = (dispatch) => ({
+  logout: (user) => dispatch(logout(user)),
+})
+
+const NavBarConnected = connect(mapStateToProps, mapDispatchToProps)(NavBar)
 export default memo(NavBarConnected)

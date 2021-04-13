@@ -1,14 +1,14 @@
-export const fetchUsersList = (page = 1) =>
+export const fetchUsersListService = (page = 1) =>
   fetch(`${process.env.REACT_APP_API_BASEURL}/users?page=${page}`).then((res) =>
     res.json()
   )
 
-export const fetchUser = (id) =>
+export const fetchUserService = (id) =>
   fetch(`${process.env.REACT_APP_API_BASEURL}/users/${id}`).then((res) =>
     res.json()
   )
 
-export const updateUser = (id, { name, job }) =>
+export const updateUserService = (id, { name, job }) =>
   fetch(`${process.env.REACT_APP_API_BASEURL}/users/${id}`, {
     method: 'PUT',
     headers: {
@@ -17,7 +17,7 @@ export const updateUser = (id, { name, job }) =>
     body: JSON.stringify({ name, job }),
   }).then((res) => res.json())
 
-export const deleteUser = (id) =>
+export const deleteUserService = (id) =>
   fetch(`${process.env.REACT_APP_API_BASEURL}/users/${id}`, {
     method: 'DELETE',
     headers: {

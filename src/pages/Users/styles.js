@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const SectionStyled = styled.section`
-  height: 100vh;
-  width: 100vw;
+  padding-top: 100px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;

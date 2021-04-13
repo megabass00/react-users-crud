@@ -13,10 +13,10 @@ import {
   USERS_DELETE_USER_ERROR,
 } from 'redux/types/usersTypes'
 import {
-  fetchUsersList,
-  fetchUser,
-  updateUser as updateUserAction,
-  deleteUser as deleteUserAction,
+  fetchUsersListService,
+  fetchUserService,
+  updateUserService,
+  deleteUserService,
 } from 'redux/services/usersService'
 
 const usersFetchList = () => ({
@@ -75,13 +75,13 @@ const usersDeleteUserError = (error) => ({
   payload: error,
 })
 
-export const getUsersList = (page) => (dispatch, getState) =>
+export const getUsersList = (page) => (dispatch) =>
   new Promise((resolve, reject) => {
     dispatch(usersFetchList())
-    fetchUsersList(page)
-      .then((users) => {
-        dispatch(usersFetchListSuccess(users))
-        resolve(users)
+    fetchUsersListService(page)
+      .then((results) => {
+        dispatch(usersFetchListSuccess(results))
+        resolve(results.data)
       })
       .catch((error) => {
         dispatch(usersFetchListError(error))
@@ -89,10 +89,10 @@ export const getUsersList = (page) => (dispatch, getState) =>
       })
   })
 
-export const getUser = (id) => (dispatch, getState) =>
+export const getUser = (id) => (dispatch) =>
   new Promise((resolve, reject) => {
     dispatch(usersFetchUser())
-    fetchUser(id)
+    fetchUserService(id)
       .then((user) => {
         dispatch(usersFetchUserSuccess(user))
         resolve(user)
@@ -103,10 +103,10 @@ export const getUser = (id) => (dispatch, getState) =>
       })
   })
 
-export const updateUser = (id, user) => (dispatch, getState) =>
+export const updateUser = (id, user) => (dispatch) =>
   new Promise((resolve, reject) => {
     dispatch(usersUpdateUser())
-    updateUserAction(id, user)
+    updateUserService(id, user)
       .then((user) => {
         dispatch(usersUpdateUserSuccess(user))
         resolve(user)
@@ -117,10 +117,10 @@ export const updateUser = (id, user) => (dispatch, getState) =>
       })
   })
 
-export const deleteUser = (id) => (dispatch, getState) =>
+export const deleteUser = (id) => (dispatch) =>
   new Promise((resolve, reject) => {
     dispatch(usersDeleteUser())
-    deleteUserAction(id)
+    deleteUserService(id)
       .then((user) => {
         dispatch(usersDeleteUserSuccess(user))
         resolve(user)

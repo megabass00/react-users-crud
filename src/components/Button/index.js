@@ -2,7 +2,7 @@ import { memo } from 'react'
 import PropTypes from 'prop-types'
 import { ButtonStyled } from './styles'
 
-const Button = ({ className, children, onClick, stretch, disabled }) => (
+const Button = ({ children, className, onClick, stretch, disabled }) => (
   <ButtonStyled
     className={className}
     onClick={onClick}
