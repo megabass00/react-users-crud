@@ -23,12 +23,7 @@ const Detail = ({ getUser, currentUser, loading }) => {
     <Layout>
       <NavBar canGoBack />
       <SectionStyled>
-        {loading && (
-          <>
-            <h4>loading...</h4>
-            <SvgBall height={200} />
-          </>
-        )}
+        {loading && <SvgBall height={150} />}
         {!loading && currentUser && (
           <>
             <h1>User Details</h1>

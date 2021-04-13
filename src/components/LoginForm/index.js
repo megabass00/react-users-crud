@@ -68,7 +68,7 @@ const LoginForm = ({ userLogin, isSubmitting, loginError, clearError }) => {
 LoginForm.propTypes = {
   userLogin: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
-  loginError: PropTypes.string.isRequired,
+  loginError: PropTypes.string,
   clearError: PropTypes.func.isRequired,
 }
 

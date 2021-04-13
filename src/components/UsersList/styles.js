@@ -1,8 +1,17 @@
 import styled from 'styled-components'
+import { MEDIAQUERIES } from 'styles'
 
 export const ListWrapper = styled.div`
   text-align: center;
-  min-width: 500px;
+  min-width: 90vw;
+
+  ${MEDIAQUERIES.tablet} {
+    min-width: 60vw;
+  }
+
+  ${MEDIAQUERIES.desktop} {
+    min-width: 40vw;
+  }
 `
 
 export const ListItemWrapper = styled.div`
@@ -29,4 +38,23 @@ export const ListItemInfoWrapper = styled.div`
 
 export const ListItemFullName = styled.h4`
   margin: 0;
+
+  ${MEDIAQUERIES.tablet} {
+    font-size: 1.2rem;
+  }
+
+  ${MEDIAQUERIES.desktop} {
+    font-size: 1.4rem;
+  }
+`
+export const ListItemEmail = styled.span`
+  font-size: 0.9rem;
+
+  ${MEDIAQUERIES.tablet} {
+    font-size: 1.2rem;
+  }
+
+  ${MEDIAQUERIES.desktop} {
+    font-size: 1.4rem;
+  }
 `

@@ -13,6 +13,7 @@ import { getDateFormatted } from 'commons'
 
 const UserDetails = ({ user, updateUser, deleteUser }) => {
   const [editing, setEditing] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState(null)
 
   const {
@@ -47,6 +48,7 @@ const UserDetails = ({ user, updateUser, deleteUser }) => {
   }
 
   const onSubmit = (values) => {
+    setIsSubmitting(true)
     updateUser(user.id, values)
       .then((result) => {
         const dateFormatted = getDateFormatted(new Date(result))
@@ -59,7 +61,10 @@ const UserDetails = ({ user, updateUser, deleteUser }) => {
         console.log('*** result update error', err)
         setStatus({ type: 'error', message: err })
       })
+      .finally(() => setIsSubmitting(false))
   }
+
+  const handleOnClearMessage = () => setStatus(null)
 
   return (
     <Wrapper>
@@ -100,13 +105,17 @@ const UserDetails = ({ user, updateUser, deleteUser }) => {
           error={emailError}
         />
         {editing && (
-          <UpdateButton stretch>
+          <UpdateButton stretch disabled={isSubmitting}>
             <SvgCheck height={20} />
             <span>Update</span>
           </UpdateButton>
         )}
         {status && (
-          <StatusMessage type={status.type} message={status.message} />
+          <StatusMessage
+            type={status.type}
+            message={status.message}
+            onClear={handleOnClearMessage}
+          />
         )}
       </form>
     </Wrapper>

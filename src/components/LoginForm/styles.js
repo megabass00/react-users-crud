@@ -1,12 +1,22 @@
 import styled from 'styled-components'
 import Button from 'components/Button'
+import { MEDIAQUERIES } from 'styles'
 
 export const Wrapper = styled.div`
-  width: 25%;
   margin: 0 auto;
   padding: 30px;
   color white;
   background: #202325;
+  width: 70vw;
+  min-height: 350px;
+
+  ${MEDIAQUERIES.tablet} {
+    width: 40vw;
+  }
+
+  ${MEDIAQUERIES.desktop} {
+    width: 20vw;
+  }
 `
 
 export const Title = styled.div`

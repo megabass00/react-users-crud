@@ -1,4 +1,8 @@
 import styled from 'styled-components'
+import { MEDIAQUERIES, AVATAR_SIZES } from 'styles'
+
+const getAvatarSize = (size, mediaQuery) =>
+  `height: ${AVATAR_SIZES[mediaQuery][size]}px;`
 
 export const WrapperStyled = styled.div`
   display: flex;
@@ -9,16 +13,13 @@ export const WrapperStyled = styled.div`
 
 export const AvatarStyled = styled.img`
   border-radius: 50%;
-  ${({ size }) => {
-    switch (size) {
-      case 'sm':
-        return 'height: 40px;'
-      case 'md':
-        return 'height: 100px;'
-      case 'lg':
-        return 'height: 150px;'
-      default:
-        return 'height: 40px;'
-    }
-  }}
+  ${(props) => getAvatarSize(props.size, 'mobile')}
+
+  ${MEDIAQUERIES.tablet} {
+    ${(props) => getAvatarSize(props.size, 'tablet')}
+  }
+
+  ${MEDIAQUERIES.desktop} {
+    ${(props) => getAvatarSize(props.size, 'desktop')}
+  }
 `

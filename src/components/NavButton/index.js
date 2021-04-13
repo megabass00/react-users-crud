@@ -4,8 +4,8 @@ import SvgArrowLeft from 'components/svg/SvgArrowLeft'
 import SvgArrowRight from 'components/svg/SvgArrowRight'
 import { NavButtonStyled } from './styles'
 
-const NavButton = ({ className, direction, onCLick, size }) => (
-  <NavButtonStyled className={className} onClick={onCLick}>
+const NavButton = ({ className, direction, onClick, size }) => (
+  <NavButtonStyled className={className} onClick={onClick}>
     {direction === 'left' ? (
       <SvgArrowLeft width={size} />
     ) : (
@@ -16,13 +16,13 @@ const NavButton = ({ className, direction, onCLick, size }) => (
 
 NavButton.propTypes = {
   direction: PropTypes.oneOf(['left', 'right']).isRequired,
-  onCLick: PropTypes.func,
+  onClick: PropTypes.func,
   size: PropTypes.number,
   className: PropTypes.string,
 }
 
 NavButton.defaultProps = {
-  onCLick: null,
+  onClick: null,
   size: 20,
 }
 

@@ -17,7 +17,6 @@ const INITIAL_STATE = {
   isAuth: Boolean(oldToken) || false,
   token: oldToken,
   error: null,
-  loggedUser: null,
 }
 
 const sessionReducer = (state = INITIAL_STATE, action) => {

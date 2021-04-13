@@ -20,4 +20,8 @@ Se han añadido varios scripts para facilitar el desarrollo:
 - _test_: ejecuta los test del proyecto y termina la ejecución (usado por Husky)
 - _test:watch_: ejecuta los test del proyecto y mantiene un _watcher_ para volver a ejecutarlos cuando detecte un cambio (usado para desarrollar)
 
+## Estilos
+
+El estilado gráfico del proyecto se ha realizado con **Styled Components**, obviando introducir un preprocesador (SASS/LESS) ya que sería mezclar dos conceptos diferentes.
+
 ## Multitema

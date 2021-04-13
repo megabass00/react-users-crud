@@ -1,16 +1,28 @@
 import Avatar from 'components/Avatar'
 import Button from 'components/Button'
 import styled from 'styled-components'
+import { MEDIAQUERIES } from 'styles'
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 500px;
+  min-width: 90vw;
+  min-height: 620px;
   padding: 10px;
+  margin-bottom: 20px;
   text-align: left;
   border-radius: 5px;
   background: #202325;
   transform: translateY(50px);
+
+  ${MEDIAQUERIES.tablet} {
+    padding: 10px 20px;
+    min-width: 60vw;
+  }
+
+  ${MEDIAQUERIES.desktop} {
+    min-width: 500px;
+  }
 `
 
 export const AvatarStyled = styled(Avatar)`

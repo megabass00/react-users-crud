@@ -9,16 +9,30 @@ import SkeletonPreloader from './SketonPreloader'
 import ListItem from './ListItem'
 import { ListWrapper } from './styles'
 
-const UsersList = ({ getUsersList, list, loading, currentPage }) => {
+const UsersList = ({
+  getUsersList,
+  list,
+  loading,
+  currentPage,
+  totalPages,
+  totalResults,
+}) => {
+  // const [page, setPage] = useState(currentPage)
   const history = useHistory()
 
   useEffect(() => {
-    getUsersList(currentPage).then((result) => {
-      console.log('*** res', result)
-    })
+    getUsersList(currentPage)
   }, [getUsersList, currentPage])
 
   const handleClick = (id) => history.push(`/users/detail/${id}`)
+
+  const handlePrev = () => {
+    // if (page > 1) setPage((prevValue) => prevValue - 1)
+  }
+
+  const handleNext = () => {
+    // if (page < totalPages) setPage((prevValue) => prevValue + 1)
+  }
 
   return (
     <ListWrapper>
@@ -34,7 +48,13 @@ const UsersList = ({ getUsersList, list, loading, currentPage }) => {
             onClick={handleClick}
           />
         ))}
-      <Pagination />
+      <Pagination
+        onPrev={handlePrev}
+        onNext={handleNext}
+        currentPage={currentPage}
+        totalResults={totalResults}
+        totalPages={totalPages}
+      />
     </ListWrapper>
   )
 }
@@ -42,18 +62,28 @@ const UsersList = ({ getUsersList, list, loading, currentPage }) => {
 UsersList.propTypes = {
   loading: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
-  currentPage: PropTypes.number.isRequired,
   getUsersList: PropTypes.func.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  totalResults: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
+}
+
+UsersList.defaultProps = {
+  currentPage: 0,
+  totalResults: 0,
+  totalPages: 0,
 }
 
 const mapStateToProps = (state) => ({
   loading: state.users.loading,
   list: state.users.list,
   currentPage: state.users.currentPage,
+  totalResults: state.users.totalResults,
+  totalPages: state.users.totalPages,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getUsersList: (user) => dispatch(getUsersList(user)),
+  getUsersList: (page) => dispatch(getUsersList(page)),
 })
 
 const UsersListConnected = connect(

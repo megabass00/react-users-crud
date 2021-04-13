@@ -9,6 +9,7 @@ import {
   NavStyled,
   NavGroup,
   Logo,
+  Wellcome,
   Title,
   LinkStyled,
   Logout,
@@ -28,13 +29,13 @@ const NavBar = ({ isAuth, logout, canGoBack }) => {
       <>
         <NavGroup>
           {canGoBack && (
-            <NavButtonStyled direction="left" onCLick={handleBackClick} />
+            <NavButtonStyled direction="left" onClick={handleBackClick} />
           )}
-          <Title>React Users CRUD</Title>
+          <Title>Users CRUD</Title>
         </NavGroup>
         {isAuth ? (
           <NavGroup>
-            <span>Welcome 😎</span>
+            <Wellcome>Welcome 😎</Wellcome>
             <Logout onClick={logout}>Log Out</Logout>
           </NavGroup>
         ) : (

@@ -18,7 +18,7 @@ const INITIAL_STATE = {
   currentUser: null,
   loading: false,
   error: null,
-  currentPage: 1,
+  currentPage: 0,
   totalResults: 0,
   totalPages: 0,
 }
@@ -80,11 +80,15 @@ const usersReducer = (state = INITIAL_STATE, action) => {
     case USERS_UPDATE_USER_SUCCESS:
       return {
         ...state,
+        list: state.map((user, i) =>
+          i === payload.id ? { ...user, ...payload.user } : user
+        ),
       }
 
     case USERS_UPDATE_USER_ERROR:
       return {
         ...state,
+        error: payload,
       }
 
     case USERS_DELETE_USER:
@@ -100,6 +104,7 @@ const usersReducer = (state = INITIAL_STATE, action) => {
     case USERS_DELETE_USER_ERROR:
       return {
         ...state,
+        loading: false,
       }
 
     default:

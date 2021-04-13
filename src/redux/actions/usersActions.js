@@ -51,9 +51,9 @@ const usersUpdateUser = () => ({
   type: USERS_UPDATE_USER,
 })
 
-const usersUpdateUserSuccess = (user) => ({
+const usersUpdateUserSuccess = (id, user) => ({
   type: USERS_UPDATE_USER_SUCCESS,
-  payload: user,
+  payload: { id, user },
 })
 
 const usersUpdateUserError = (error) => ({
@@ -108,7 +108,7 @@ export const updateUser = (id, user) => (dispatch) =>
     dispatch(usersUpdateUser())
     updateUserService(id, user)
       .then((user) => {
-        dispatch(usersUpdateUserSuccess(user.updatedAt))
+        dispatch(usersUpdateUserSuccess(id, user))
         resolve(user.updatedAt)
       })
       .catch((error) => {

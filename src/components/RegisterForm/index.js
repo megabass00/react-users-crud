@@ -76,7 +76,7 @@ const RegisterForm = ({
             required: true,
             minLength: 8,
             validate: (value) =>
-              value === password.current || 'The passwords do not match',
+              value === password.current || 'the passwords do not match',
           }}
           error={confirmPasswordError}
         />
@@ -99,7 +99,7 @@ const RegisterForm = ({
 RegisterForm.propTypes = {
   userRegister: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
-  registerError: PropTypes.string.isRequired,
+  registerError: PropTypes.string,
   clearError: PropTypes.func.isRequired,
 }
 
