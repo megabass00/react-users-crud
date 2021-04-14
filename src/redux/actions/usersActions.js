@@ -21,63 +21,63 @@ import {
   deleteUserService,
 } from 'redux/services/usersService'
 
-const usersFetchList = () => ({
+export const usersFetchList = () => ({
   type: USERS_FETCH_LIST,
 })
 
-const usersFetchListSuccess = (users) => ({
+export const usersFetchListSuccess = (users) => ({
   type: USERS_FETCH_LIST_SUCCESS,
   payload: users,
 })
 
-const usersFetchListError = (error) => ({
+export const usersFetchListError = (error) => ({
   type: USERS_FETCH_LIST_ERROR,
   payload: error,
 })
 
-const usersSetCurrentPage = (page) => ({
+export const usersSetCurrentPage = (page) => ({
   type: USERS_SET_CURRENT_PAGE,
   payload: page,
 })
 
-const usersFetchUser = () => ({
+export const usersFetchUser = () => ({
   type: USERS_FETCH_USER,
 })
 
-const usersFetchUserSuccess = (user) => ({
+export const usersFetchUserSuccess = (user) => ({
   type: USERS_FETCH_USER_SUCCESS,
   payload: user,
 })
 
-const usersFetchUserError = (error) => ({
+export const usersFetchUserError = (error) => ({
   type: USERS_FETCH_USER_ERROR,
   payload: error,
 })
 
-const usersUpdateUser = () => ({
+export const usersUpdateUser = () => ({
   type: USERS_UPDATE_USER,
 })
 
-const usersUpdateUserSuccess = (id, user) => ({
+export const usersUpdateUserSuccess = (id, user) => ({
   type: USERS_UPDATE_USER_SUCCESS,
   payload: { id, user },
 })
 
-const usersUpdateUserError = (error) => ({
+export const usersUpdateUserError = (error) => ({
   type: USERS_UPDATE_USER_ERROR,
   payload: error,
 })
 
-const usersDeleteUser = () => ({
+export const usersDeleteUser = () => ({
   type: USERS_DELETE_USER,
 })
 
-const usersDeleteUserSuccess = (user) => ({
+export const usersDeleteUserSuccess = (user) => ({
   type: USERS_DELETE_USER_SUCCESS,
   payload: user,
 })
 
-const usersDeleteUserError = (error) => ({
+export const usersDeleteUserError = (error) => ({
   type: USERS_DELETE_USER_ERROR,
   payload: error,
 })

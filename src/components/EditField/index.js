@@ -14,7 +14,7 @@ const EditField = ({
 }) => {
   return (
     <FieldWrapper>
-      {label && <LabelStyled>{label}</LabelStyled>}
+      {label && <LabelStyled htmlFor={name}>{label}</LabelStyled>}
       {editing ? (
         <>
           <InputStyled

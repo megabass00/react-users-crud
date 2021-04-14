@@ -12,43 +12,43 @@ import { sessionStorageTokenKey } from 'redux/reducers/sessionReducer'
 import { loginService, registerService } from 'redux/services/sessionService'
 import { resetUsers } from 'redux/actions/usersActions'
 
-const sessionCheckingLogin = (user) => ({
+export const sessionCheckingLogin = (user) => ({
   type: SESSION_CHECKING_LOGIN,
   payload: user,
 })
 
-const sessionLoginSuccess = (user) => ({
+export const sessionLoginSuccess = (user) => ({
   type: SESSION_LOGIN_SUCCESS,
   payload: user,
 })
 
-const sessionLoginError = (error) => ({
+export const sessionLoginError = (error) => ({
   type: SESSION_LOGIN_ERROR,
   payload: error,
 })
 
-const sessionLogOut = () => ({
+export const sessionLogOut = () => ({
   type: SESSION_LOGOUT,
 })
 
-const sessionRegister = (user) => ({
+export const sessionRegister = (user) => ({
   type: SESSION_REGISTER,
   payload: user,
 })
 
-const sessionRegisterSuccess = (user) => ({
+export const sessionRegisterSuccess = (user) => ({
   type: SESSION_REGISTER_SUCCESS,
   payload: user,
 })
 
-const sessionRegisterError = (error) => ({
+export const sessionRegisterError = (error) => ({
   type: SESSION_REGISTER_ERROR,
   payload: error,
 })
 
 export const userLogin = (user) => (dispatch) =>
   new Promise((resolve, reject) => {
-    dispatch(sessionCheckingLogin(user))
+    dispatch(sessionCheckingLogin())
     loginService(user)
       .then((result) => {
         if (result.hasOwnProperty('error')) {
@@ -76,7 +76,7 @@ export const logout = () => (dispatch) => {
 
 export const userRegister = (user) => (dispatch) =>
   new Promise((resolve, reject) => {
-    dispatch(sessionRegister(user))
+    dispatch(sessionRegister())
     registerService(user)
       .then((result) => {
         if (result.hasOwnProperty('error')) {

@@ -5,7 +5,7 @@ import SvgTrash from 'components/svg/SvgTrash'
 import { ActionsWrapper, ActionButtonStyled } from './styles'
 
 const ActionButtons = ({ onEdit, onRemove }) => (
-  <ActionsWrapper>
+  <ActionsWrapper data-testid="wrapper">
     {onEdit && (
       <ActionButtonStyled onClick={onEdit}>
         <SvgEdit height={14} />

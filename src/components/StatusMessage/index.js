@@ -2,7 +2,7 @@ import { useState, useEffect, memo } from 'react'
 import PropTypes from 'prop-types'
 import { Success, Warning, Error, Info } from './styles'
 
-const CLEAR_TIME = 4000
+export const CLEAR_TIME = 4000
 
 const StatusMessage = ({ type, message, onClear }) => {
   const [show, setShow] = useState(true)

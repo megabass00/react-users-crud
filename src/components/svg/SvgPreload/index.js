@@ -10,6 +10,7 @@ function SvgPreload(props) {
       display="block"
       {...props}
     >
+      <title>Preload</title>
       <circle
         cx={50}
         cy={50}
