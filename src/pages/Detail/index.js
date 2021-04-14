@@ -14,9 +14,7 @@ const Detail = ({ getUser, currentUser, loading }) => {
   const { userId } = useParams()
 
   useEffect(() => {
-    getUser(userId).then((result) => {
-      console.log('*** detail user', result)
-    })
+    getUser(userId)
   }, [getUser, userId])
 
   return (

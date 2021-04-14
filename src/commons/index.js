@@ -24,6 +24,5 @@ export const getDateFormatted = (date) => {
   } else {
     dateFormatted = date.toLocaleString(dateOptions)
   }
-  console.log('*** dateFormatted', dateFormatted)
   return dateFormatted
 }

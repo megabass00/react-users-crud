@@ -25,3 +25,7 @@ Se han añadido varios scripts para facilitar el desarrollo:
 El estilado gráfico del proyecto se ha realizado con **Styled Components**, obviando introducir un preprocesador (SASS/LESS) ya que sería mezclar dos conceptos diferentes.
 
 ## Multitema
+
+## Testing
+
+## Librerias usadas

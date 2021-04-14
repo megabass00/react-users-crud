@@ -12,7 +12,7 @@ import {
 export const sessionStorageTokenKey = 'token'
 
 const oldToken = window.sessionStorage.getItem(sessionStorageTokenKey)
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   loading: false,
   isAuth: Boolean(oldToken) || false,
   token: oldToken,

@@ -28,12 +28,10 @@ const UserDetails = ({ user, updateUser, deleteUser }) => {
     email: emailError,
   } = errors
 
-  const handleEdit = () => {
-    console.log('***', 'Updating user')
-    setEditing((prevValue) => !prevValue)
-  }
+  const handleEdit = () => setEditing((prevValue) => !prevValue)
 
   const handleRemove = () => {
+    setIsSubmitting(true)
     deleteUser(user.id)
       .then((result) => {
         setStatus({
@@ -42,9 +40,9 @@ const UserDetails = ({ user, updateUser, deleteUser }) => {
         })
       })
       .catch((err) => {
-        console.log('*** result delete error', err)
         setStatus({ type: 'error', message: err })
       })
+      .finally(() => setIsSubmitting(false))
   }
 
   const onSubmit = (values) => {
@@ -58,7 +56,6 @@ const UserDetails = ({ user, updateUser, deleteUser }) => {
         })
       })
       .catch((err) => {
-        console.log('*** result update error', err)
         setStatus({ type: 'error', message: err })
       })
       .finally(() => setIsSubmitting(false))
@@ -135,7 +132,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   deleteUser: (id) => dispatch(deleteUser(id)),
-  updateUser: (id) => dispatch(updateUser(id)),
+  updateUser: (id, user) => dispatch(updateUser(id, user)),
 })
 
 const UserDetailsConnected = connect(

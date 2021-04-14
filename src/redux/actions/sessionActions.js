@@ -10,6 +10,7 @@ import {
 } from 'redux/types/sessionTypes'
 import { sessionStorageTokenKey } from 'redux/reducers/sessionReducer'
 import { loginService, registerService } from 'redux/services/sessionService'
+import { resetUsers } from 'redux/actions/usersActions'
 
 const sessionCheckingLogin = (user) => ({
   type: SESSION_CHECKING_LOGIN,
@@ -68,6 +69,7 @@ export const userLogin = (user) => (dispatch) =>
   })
 
 export const logout = () => (dispatch) => {
+  dispatch(resetUsers())
   dispatch(sessionLogOut())
   window.sessionStorage.removeItem(sessionStorageTokenKey)
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 
-import { getUsersList } from 'redux/actions/usersActions'
+import { getUsersList, setCurrentPage } from 'redux/actions/usersActions'
 import Pagination from 'components/Pagination'
 import SkeletonPreloader from './SketonPreloader'
 import ListItem from './ListItem'
@@ -11,13 +11,14 @@ import { ListWrapper } from './styles'
 
 const UsersList = ({
   getUsersList,
+  setCurrentPage,
   list,
   loading,
   currentPage,
   totalPages,
   totalResults,
+  perPage,
 }) => {
-  // const [page, setPage] = useState(currentPage)
   const history = useHistory()
 
   useEffect(() => {
@@ -27,11 +28,15 @@ const UsersList = ({
   const handleClick = (id) => history.push(`/users/detail/${id}`)
 
   const handlePrev = () => {
-    // if (page > 1) setPage((prevValue) => prevValue - 1)
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1)
+    }
   }
 
   const handleNext = () => {
-    // if (page < totalPages) setPage((prevValue) => prevValue + 1)
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1)
+    }
   }
 
   return (
@@ -54,6 +59,7 @@ const UsersList = ({
         currentPage={currentPage}
         totalResults={totalResults}
         totalPages={totalPages}
+        perPage={perPage}
       />
     </ListWrapper>
   )
@@ -63,15 +69,11 @@ UsersList.propTypes = {
   loading: PropTypes.bool.isRequired,
   list: PropTypes.array.isRequired,
   getUsersList: PropTypes.func.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
   currentPage: PropTypes.number.isRequired,
   totalResults: PropTypes.number.isRequired,
   totalPages: PropTypes.number.isRequired,
-}
-
-UsersList.defaultProps = {
-  currentPage: 0,
-  totalResults: 0,
-  totalPages: 0,
+  perPage: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = (state) => ({
@@ -80,10 +82,12 @@ const mapStateToProps = (state) => ({
   currentPage: state.users.currentPage,
   totalResults: state.users.totalResults,
   totalPages: state.users.totalPages,
+  perPage: state.users.perPage,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getUsersList: (page) => dispatch(getUsersList(page)),
+  setCurrentPage: (page) => dispatch(setCurrentPage(page)),
 })
 
 const UsersListConnected = connect(

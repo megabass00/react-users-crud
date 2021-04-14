@@ -10,10 +10,16 @@ const Pagination = ({
   currentPage,
   totalResults,
   totalPages,
+  perPage,
 }) => (
   <Wrapper>
     <NavButton direction="left" onClick={onPrev} />
-    <Label>{`Page ${currentPage} of ${totalPages} (total ${totalResults})`}</Label>
+    <Label>{`Page ${currentPage}/${totalPages}`}</Label>
+    <Label>
+      {`${currentPage * perPage - perPage + 1} to ${
+        currentPage * perPage
+      } of ${totalResults}`}
+    </Label>
     <NavButton direction="right" onClick={onNext} />
   </Wrapper>
 )
@@ -24,6 +30,7 @@ Pagination.propTypes = {
   currentPage: PropTypes.number,
   totalResults: PropTypes.number,
   totalPages: PropTypes.number,
+  perPage: PropTypes.number,
 }
 
 Pagination.defaultProps = {

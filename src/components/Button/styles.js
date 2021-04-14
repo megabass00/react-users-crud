@@ -26,5 +26,6 @@ export const ButtonStyled = styled.button`
   :disabled {
     opacity: 0.3;
     pointer-events: none;
+    user-select: none;
   }
 `

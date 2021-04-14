@@ -11,7 +11,7 @@ const SkeletonWrapper = styled.div`
 
 const SkeletonPreloader = () =>
   [1, 2, 3, 4, 5, 6].map((ph, index) => (
-    <SkeletonWrapper key={index}>
+    <SkeletonWrapper key={`skeleton-${index}`}>
       <SkeletonListItem backgroundColor="#44494d" foregroundColor="#54595d" />
     </SkeletonWrapper>
   ))
