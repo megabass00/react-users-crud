@@ -12,7 +12,7 @@ export const NavStyled = styled.nav`
   height: 80px;
   position: fixed;
   top: 0;
-  background: #ffffffdd;
+  background: ${({ theme }) => theme.navBarColor};
   padding: 10px 0;
   z-index: 1;
   padding: 10px 0;
@@ -31,6 +31,7 @@ export const Logo = styled.span`
 `
 
 export const Wellcome = styled.span`
+  color: ${({ theme }) => theme.navBarTextColor};
   display: none;
 
   ${MEDIAQUERIES.tablet} {
@@ -41,6 +42,7 @@ export const Wellcome = styled.span`
 export const Title = styled.span`
   font-weight: bold;
   margin-right: 30px;
+  color: ${({ theme }) => theme.navBarTextColor};
   font-size: 0.9rem;
 
   ${MEDIAQUERIES.tablet} {
@@ -52,7 +54,7 @@ export const Title = styled.span`
 `
 
 export const LinkStyled = styled(Link)`
-  color: #0077c8;
+  color: ${({ theme }) => theme.primaryColor};
   text-decoration: none;
   padding: 0 5px;
   transition: color 0.5s ease 0s;
@@ -81,5 +83,17 @@ export const NavButtonStyled = styled(NavButton)`
 
   ${MEDIAQUERIES.tablet} {
     margin-right: 20px;
+  }
+`
+
+export const ToggleThemeButton = styled.button`
+  outline: 0;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  transition: opacity 0.3s ease 0s;
+
+  :hover {
+    opacity: 0.4;
   }
 `

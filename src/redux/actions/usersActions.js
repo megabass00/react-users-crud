@@ -12,6 +12,7 @@ import {
   USERS_DELETE_USER,
   USERS_DELETE_USER_SUCCESS,
   USERS_DELETE_USER_ERROR,
+  USERS_CLEAR_ERROR,
   USERS_RESET,
 } from 'redux/types/usersTypes'
 import {
@@ -83,26 +84,24 @@ export const usersDeleteUserError = (error) => ({
 })
 
 export const getUsersList = (page) => (dispatch, getState) => {
-  // if (page <= 0) return []
-  // const { perPage, list } = getState().users
-  // if (list.length >= perPage * page) {
-  //   const end = perPage * page
-  //   const start = end - perPage
-  //   const sliceList = list.slice(start, end)
-  //   console.log('*** sliceList', sliceList)
-  //   return sliceList
-  // }
   return new Promise((resolve, reject) => {
-    dispatch(usersFetchList())
-    fetchUsersListService(page)
-      .then((results) => {
-        dispatch(usersFetchListSuccess(results))
-        resolve(results.data)
-      })
-      .catch((error) => {
-        dispatch(usersFetchListError(error))
-        reject(error)
-      })
+    const { perPage, list } = getState().users
+    if (list.length && list.length > perPage * page - 1) {
+      const end = perPage * page
+      const start = end - perPage
+      resolve(list.slice(start, end))
+    } else {
+      dispatch(usersFetchList())
+      fetchUsersListService(page)
+        .then((results) => {
+          dispatch(usersFetchListSuccess(results))
+          resolve(results.data)
+        })
+        .catch((error) => {
+          dispatch(usersFetchListError(error))
+          reject(error)
+        })
+    }
   })
 }
 
@@ -149,6 +148,11 @@ export const deleteUser = (id) => (dispatch) =>
         dispatch(usersDeleteUserError(error))
         reject(error)
       })
+  })
+
+export const clearError = () => (dispatch) =>
+  dispatch({
+    type: USERS_CLEAR_ERROR,
   })
 
 export const resetUsers = () => (dispatch) =>

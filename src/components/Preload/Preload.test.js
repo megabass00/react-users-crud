@@ -1,10 +1,11 @@
 /* global describe, test, expect */
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import { renderWithRedux } from 'commons/testUtils'
 import Preload from './index'
 
 describe('<Preload />', () => {
   test('should renders without problems', () => {
-    render(<Preload />)
+    renderWithRedux(<Preload />)
     expect(screen.getByTitle('Preload')).toBeInTheDocument()
   })
 })

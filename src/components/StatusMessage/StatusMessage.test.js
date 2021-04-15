@@ -1,6 +1,7 @@
 /* global describe, test, jest, expect */
 import { render, screen, waitFor } from '@testing-library/react'
-import StatusMessage, { CLEAR_TIME } from './index'
+import { STATUS_MESSAGE_CLEAR_TIME } from 'commons/constants'
+import StatusMessage from './index'
 
 const defaultProps = {
   type: 'info',
@@ -18,7 +19,7 @@ describe('<StatusMessage />', () => {
     const mockFn = jest.fn()
     render(<StatusMessage {...defaultProps} onClear={mockFn} />)
     await waitFor(() => expect(mockFn).toHaveBeenCalledTimes(1), {
-      timeout: CLEAR_TIME + 100,
+      timeout: STATUS_MESSAGE_CLEAR_TIME + 100,
     })
   })
 })

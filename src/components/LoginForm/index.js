@@ -22,9 +22,7 @@ const LoginForm = ({ userLogin, isSubmitting, loginError, clearError }) => {
   const { email: emailError, password: passwordError } = errors
 
   const onSubmit = ({ email, password }) => {
-    userLogin({ email, password })
-      .then(() => history.push('/users'))
-      .catch((err) => console.log(err))
+    userLogin({ email, password }).then(() => history.push('/users'))
   }
 
   return (

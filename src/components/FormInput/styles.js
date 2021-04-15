@@ -12,15 +12,15 @@ export const LabelStyled = styled.label`
 
 export const InputStyled = styled.input`
   font-family: Rajdhani;
-  color: #fff;
+  color: ${({ theme }) => theme.textColor};
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #a9aeb4;
+  border: 2px solid ${({ theme }) => theme.inputBorderColor};
   background: rgba(0, 0, 0, 0);
   outline: none;
 
   :hover,
   :focus {
-    border: 2px solid #0077c8;
+    border: 2px solid ${({ theme }) => theme.primaryColor};
   }
 `

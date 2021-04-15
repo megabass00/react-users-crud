@@ -12,6 +12,7 @@ import {
   USERS_DELETE_USER,
   USERS_DELETE_USER_SUCCESS,
   USERS_DELETE_USER_ERROR,
+  USERS_CLEAR_ERROR,
   USERS_RESET,
 } from 'redux/types/usersTypes'
 
@@ -20,7 +21,7 @@ export const INITIAL_STATE = {
   currentUser: null,
   loading: false,
   error: null,
-  currentPage: 0,
+  currentPage: 1,
   totalResults: 0,
   totalPages: 0,
   perPage: 0,
@@ -116,6 +117,12 @@ const usersReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
+      }
+
+    case USERS_CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
       }
 
     case USERS_RESET:

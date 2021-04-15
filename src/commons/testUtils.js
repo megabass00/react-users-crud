@@ -7,8 +7,13 @@ import rootReducer from 'redux/reducers'
 
 import { INITIAL_STATE as SESSION_INIAL_STATE } from 'redux/reducers/sessionReducer'
 import { INITIAL_STATE as USERS_INIAL_STATE } from 'redux/reducers/usersReducer'
+import { INITIAL_STATE as STYLES_INIAL_STATE } from 'redux/reducers/stylesReducer'
 
-const initialState = { session: SESSION_INIAL_STATE, users: USERS_INIAL_STATE }
+const initialState = {
+  session: SESSION_INIAL_STATE,
+  users: USERS_INIAL_STATE,
+  styles: STYLES_INIAL_STATE,
+}
 
 const renderWithRedux = (
   ui,

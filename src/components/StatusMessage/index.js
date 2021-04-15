@@ -1,8 +1,7 @@
 import { useState, useEffect, memo } from 'react'
 import PropTypes from 'prop-types'
 import { Success, Warning, Error, Info } from './styles'
-
-export const CLEAR_TIME = 4000
+import { STATUS_MESSAGE_CLEAR_TIME } from 'commons/constants'
 
 const StatusMessage = ({ type, message, onClear }) => {
   const [show, setShow] = useState(true)
@@ -12,7 +11,7 @@ const StatusMessage = ({ type, message, onClear }) => {
     const timer = setTimeout(() => {
       setShow(false)
       onClear && onClear()
-    }, CLEAR_TIME)
+    }, STATUS_MESSAGE_CLEAR_TIME)
     return () => clearTimeout(timer)
   }, [setShow])
 

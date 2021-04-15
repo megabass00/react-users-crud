@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   margin-bottom: 20px;
   text-align: left;
   border-radius: 5px;
-  background: #202325;
+  background: ${({ theme }) => theme.formBackgroundColor};
   transform: translateY(50px);
 
   ${MEDIAQUERIES.tablet} {
@@ -29,7 +29,8 @@ export const AvatarStyled = styled(Avatar)`
   transform: translateY(-50px);
 
   > img {
-    border: 10px solid #202325;
+    background: ${({ theme }) => theme.formBackgroundColor};
+    border: 10px solid ${({ theme }) => theme.formBackgroundColor};
   }
 `
 

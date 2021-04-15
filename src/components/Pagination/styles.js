@@ -6,9 +6,9 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
-  color: #71787c;
+  color: ${({ theme }) => theme.gray1};
 `
 
 export const Label = styled.span`
-  color: #71787c;
+  color: ${({ theme }) => theme.gray1};
 `

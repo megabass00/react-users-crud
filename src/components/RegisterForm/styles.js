@@ -6,8 +6,8 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   margin-top: 100px;
   padding: 30px;
-  color white;
-  background: #202325;
+  color ${({ theme }) => theme.textColor};
+  background: ${({ theme }) => theme.formBackgroundColor};
   width: 70vw;
   min-height: 450px;
 

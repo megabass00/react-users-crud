@@ -27,8 +27,6 @@ describe('<NavBar />', () => {
     renderWithRedux(<NavBar />, {
       testState,
     })
-
-    // fireEvent.click(getByText('LOGOUT'))
     expect(screen.getByText(/Login/)).toBeInTheDocument()
   })
 })

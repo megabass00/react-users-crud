@@ -8,7 +8,7 @@ export const FieldWrapper = styled.div`
 
 export const LabelStyled = styled.label`
   margin: 20px 0 5px;
-  color: #71787c;
+  color: ${({ theme }) => theme.gray1};
   font-size: 1rem;
 
   ${MEDIAQUERIES.tablet} {
@@ -34,17 +34,17 @@ export const ValueStyled = styled.div`
 
 export const InputStyled = styled.input`
   font-family: Rajdhani;
-  color: #fff;
+  color: ${({ theme }) => theme.textColor};
   padding: 10px 0;
   border: none;
-  border-bottom: 2px solid #a9aeb4;
+  border-bottom: 2px solid ${({ theme }) => theme.inputBorderColor};
   background: rgba(0, 0, 0, 0);
   outline: none;
   font-size: 1.3rem;
 
   :hover,
   :focus {
-    border-bottom: 2px solid #0077c8;
+    border-bottom: 2px solid ${({ theme }) => theme.primaryColor};
   }
 
   ${MEDIAQUERIES.tablet} {

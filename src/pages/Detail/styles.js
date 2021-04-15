@@ -6,5 +6,11 @@ export const SectionStyled = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: ${({ theme }) => theme.textColor};
+`
+
+export const PreloadWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  height: 80vh;
 `

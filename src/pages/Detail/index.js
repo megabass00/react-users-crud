@@ -8,7 +8,7 @@ import NavBar from 'components/NavBar'
 import Layout from 'components/Layout'
 import UserDetails from 'components/UserDetails'
 import SvgBall from 'components/svg/SvgBall'
-import { SectionStyled } from './styles'
+import { SectionStyled, PreloadWrapper } from './styles'
 
 const Detail = ({ getUser, currentUser, loading }) => {
   const { userId } = useParams()
@@ -21,7 +21,11 @@ const Detail = ({ getUser, currentUser, loading }) => {
     <Layout>
       <NavBar canGoBack />
       <SectionStyled>
-        {loading && <SvgBall height={150} />}
+        {loading && (
+          <PreloadWrapper>
+            <SvgBall height={150} />
+          </PreloadWrapper>
+        )}
         {!loading && currentUser && (
           <>
             <h1>User Details</h1>

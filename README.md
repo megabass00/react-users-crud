@@ -1,6 +1,29 @@
-# Descripción
+# 🚀 Prueba LaLiga
 
-Login + Gestión de usuarios con React
+Me he centrado en desarrollar siguiendo las prácticas que suelo utilizar en mi día a día e intentando extender en la medida que el tiempo me lo ha permitido las funcionalidades establecidas en el documento. He intentado implementar de la manera más correcta la lógica interna del problema propuesto, con la estructura de carpetas que normalmente uso para proyectos de React, como por ejemplo la separación de componentes y de páginas.
+
+Como añadido a las funcionalidades propuestas se ha implementado un formulario de registro que permite _crear_ un nuevo usuario. La API no permite crear nuevos usuarios, pero sí permite registrar emails que ya existan en la base de datos, devolviendo un token que permite autorizar al usuario mientras usa la aplicación.
+
+La carga de las páginas se ha hecho mediante _lazy load_ permitiendo mostrar una precarga sencilla para mejorar la experiencia del usuario. Todas las imágenes usadas estan en formato SVG lo que permite estilarlas desde el código y optimizar su carga.
+
+Para el desarrollo se ha usado la rama _develop_ y al finalizar se mergeó la rama _main_ con todos los cambios. El historial de _git_ está más o menos estructurado por las fases del desarrollo dejando en cada _commit_ una versión estable.
+
+## Instalación
+
+Para clonar este repositorío necesitarás tener instalado en el ordenador [Git](https://git-scm.com/) y [Node.js](https://nodejs.org/en/download/) el cual ya viene con _npm_ instalado. Aparte de _npm_ también puedes gestionar las dependencias con [yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable). Una vez tengas estas aplicaciones abre un terminal y sigue las instrucciones de abajo:
+
+```
+# Clonar este repositorio
+git clone https://github.com/megabass00/react-users-crud
+
+# Instalar las dependencias (yarn o npm)
+yarn
+npm i
+
+# Levantar el proyecto
+yarn start
+npm start
+```
 
 ## Usuario de pruebas
 
@@ -26,7 +49,11 @@ Para el uso de Redux se ha añadido el middleware **Redux Thunk** que permite de
 
 ## Estilos
 
-El estilado gráfico del proyecto se ha realizado con **Styled Components**, obviando introducir un preprocesador (SASS/LESS) ya que sería mezclar dos conceptos diferentes.
+El estilado gráfico del proyecto se ha realizado con **Styled Components**, obviando introducir un preprocesador (SASS/LESS) ya que sería mezclar dos conceptos diferentes. Se han establecido 3 breackpoints para que la aplicación sea _responsive_ y se pueda visualizar correctamente tanto en dispositivos móviles (teléfonos y tabletas) como en navegadores de escritorio con la filosofía **mobile-first**. Para la inyección de estilos globales se ha usado _createGlobalStyle_ de **Styled Components** pero para inyectar las fuentes se ha usado _App.css_ porque si no las fuentes son inyectadas en cada _render_.
+
+## Temas
+
+Se ha añadido la funcionalidad que permita al usuario cambiar de tema, aplicándole a la UI un aspecto diferente y de esta forma darle un valor añadido al proyecto. Para cambiar de tema hay que hacer clic en el logo de la barra de navegación y hay dos disponibles: _dark_ y _light_.
 
 ## Formularios
 
@@ -34,7 +61,7 @@ Para la gestión de formularios ya que son sencillos se ha usado **React Hook Fo
 
 ## Testing
 
-Se han implementado tests tanto para componentes como para el uso de Redux comprobando acciones y funciones reductoras.
+Se han implementado tests a modo de demostación tanto para componentes como para el uso de Redux comprobando acciones y funciones reductoras.
 
 ## Librerias usadas
 
@@ -48,10 +75,9 @@ Hay varias librerías que se han instalado para dar características extra al pr
 - redux-mock-store: permite programar test de acciones asíncronas
 - redux-devtools-extension: permite ver de forma amigable el contexto de Redux de la aplicación en el _devtools_ del navegador
 
-## TODO
+## ToDo
 
-Por falta de tiempo han quedado pendientes los siguientes puntos:
+Por falta de tiempo han quedado pendientes los siguientes puntos 😊:
 
-- implementación de _theming_ para usuarios logueados que permita al usuario cambiar de tema y darle un valor añadido al proyecto
 - implementar la librería _react-lazyload_ para la precarga de imágenes
 - añadir más tests

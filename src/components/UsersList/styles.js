@@ -22,13 +22,13 @@ export const ListItemWrapper = styled.div`
   border-radius: 3px;
   margin: 10px 0;
   cursor: pointer;
-  background: #202325;
-  border: 1px solid #44494d;
+  background: ${({ theme }) => theme.formBackgroundColor};
+  border: 1px solid ${({ theme }) => theme.gray2};
   transition: border, background 0.3s ease 0s;
 
   :hover {
-    border: 1px solid #0077c8;
-    background: #2a2e30;
+    border: 1px solid ${({ theme }) => theme.primaryColor};
+    background: ${({ theme }) => theme.listItemHoverBackground};
   }
 `
 

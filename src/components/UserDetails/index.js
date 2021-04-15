@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
 
 import { updateUser, deleteUser } from 'redux/actions/usersActions'
 import ActionButtons from 'components/ActionButtons'
@@ -10,11 +11,15 @@ import StatusMessage from 'components/StatusMessage'
 import SvgCheck from 'components/svg/SvgCheck'
 import { Wrapper, AvatarStyled, FullName, UpdateButton } from './styles'
 import { getDateFormatted } from 'commons'
+import { STATUS_MESSAGE_CLEAR_TIME } from 'commons/constants'
+import Preload from 'components/Preload'
 
 const UserDetails = ({ user, updateUser, deleteUser }) => {
   const [editing, setEditing] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState(null)
+
+  const history = useHistory()
 
   const {
     register,
@@ -31,18 +36,21 @@ const UserDetails = ({ user, updateUser, deleteUser }) => {
   const handleEdit = () => setEditing((prevValue) => !prevValue)
 
   const handleRemove = () => {
-    setIsSubmitting(true)
-    deleteUser(user.id)
-      .then((result) => {
-        setStatus({
-          type: 'success',
-          message: 'User has been deleted successfully 👍',
+    if (confirm(`Are you sure you want remove to ${user.first_name}?`)) {
+      setIsSubmitting(true)
+      deleteUser(user.id)
+        .then((result) => {
+          setStatus({
+            type: 'success',
+            message: `${user.first_name} was deleted successfully 👍,you will be redirect to users list...`,
+          })
+          setTimeout(() => history.push('/users'), STATUS_MESSAGE_CLEAR_TIME)
         })
-      })
-      .catch((err) => {
-        setStatus({ type: 'error', message: err })
-      })
-      .finally(() => setIsSubmitting(false))
+        .catch((err) => {
+          setStatus({ type: 'error', message: err })
+        })
+        .finally(() => setIsSubmitting(false))
+    }
   }
 
   const onSubmit = (values) => {
@@ -107,6 +115,7 @@ const UserDetails = ({ user, updateUser, deleteUser }) => {
             <span>Update</span>
           </UpdateButton>
         )}
+        {!editing && isSubmitting && <Preload message="Processing..." />}
         {status && (
           <StatusMessage
             type={status.type}

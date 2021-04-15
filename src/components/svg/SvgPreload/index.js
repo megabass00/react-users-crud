@@ -1,6 +1,6 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-
+import { connect } from 'react-redux'
 function SvgPreload(props) {
   return (
     <svg
@@ -8,7 +8,8 @@ function SvgPreload(props) {
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid"
       display="block"
-      {...props}
+      width={props.width}
+      height={props.height}
     >
       <title>Preload</title>
       <circle
@@ -16,7 +17,7 @@ function SvgPreload(props) {
         cy={50}
         r={32}
         strokeWidth={8}
-        stroke={props.fill}
+        stroke={props.theme.textColor}
         strokeDasharray="50.26548245743669 50.26548245743669"
         fill="none"
         strokeLinecap="round"
@@ -36,9 +37,20 @@ function SvgPreload(props) {
 
 SvgPreload.propTypes = {
   fill: PropTypes.string,
-}
-SvgPreload.defaultProps = {
-  fill: '#ffffff',
+  theme: PropTypes.object.isRequired,
+  width: PropTypes.number,
+  height: PropTypes.number,
 }
 
-export default SvgPreload
+SvgPreload.defaultProps = {
+  fill: '#ffffff',
+  width: 50,
+  height: 50,
+}
+
+const mapStateToProps = (state) => ({
+  theme: state.styles.theme,
+})
+
+const SvgPreloadConnected = connect(mapStateToProps, null)(SvgPreload)
+export default SvgPreloadConnected

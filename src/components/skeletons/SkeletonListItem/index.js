@@ -1,4 +1,6 @@
 import ContentLoader from 'react-content-loader'
+import styled from 'styled-components'
+import { MEDIAQUERIES } from 'styles'
 
 const SkeletonListItem = (props) => (
   <ContentLoader viewBox="0 0 400 100" height={100} width={500} {...props}>
@@ -16,4 +18,14 @@ SkeletonListItem.metadata = {
   filename: 'SkeletonListItem',
 }
 
-export default SkeletonListItem
+const SkeletonListItemStyled = styled(SkeletonListItem)`
+  width: 300px;
+  height: 60px;
+
+  ${MEDIAQUERIES.tablet} {
+    width: 450px;
+    height: 90px;
+  }
+`
+
+export default SkeletonListItemStyled

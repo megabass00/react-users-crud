@@ -5,8 +5,8 @@ export const Wrapper = styled.div`
   height: 100vh;
   display: grid;
   justify-items: center;
-  background: #25282a;
-  color: white;
+  background: ${({ theme }) => theme.backgroundColor};
+  color: ${({ theme }) => theme.textColor};
   font-family: Rajdhani;
 `
 

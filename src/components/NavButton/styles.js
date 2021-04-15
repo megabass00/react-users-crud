@@ -5,10 +5,10 @@ export const NavButtonStyled = styled.button`
   outline: none;
   background: transparent;
   cursor: pointer;
-  color: #71787c;
+  color: ${({ theme }) => theme.gray1};
   transition: color 0.5s ease 0s;
 
   :hover {
-    color: #0077c8;
+    color: ${({ theme }) => theme.primaryColor};
   }
 `
